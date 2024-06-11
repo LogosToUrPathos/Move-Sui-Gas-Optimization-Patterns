@@ -1,0 +1,44 @@
+module move_gas_optimization::reinitializae_variables{
+    /*
+    public fun non_reinitialized_integer(){
+        let mut i: u16 = 0;
+        let mut x: u16;
+
+        while(i < 1000){
+            x = i;
+            i = i + 1;
+        }    
+    }
+    */
+    /*
+    public fun reinitialized_integer(){
+        let mut i: u16 = 0;
+        
+        while(i < 1000){
+            let x: u16 = i;
+            i = i + 1;
+        }
+    }
+    */
+    /*
+    public fun non_reinitialized_booleans(){
+        let mut i: u16 = 0;
+        let mut x: bool;
+        
+        while(i < 1000){
+            x = true;
+            i = i + 1;
+        }
+    }
+    */
+    
+    public fun reinitializae_booleans(){
+        let mut i: u16 = 0;
+
+        while(i < 1000){
+            let x: bool = true;
+            i = i + 1;
+        }
+    }
+    
+}
