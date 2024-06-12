@@ -8,7 +8,7 @@ module move_gas_optimization::mutable_vs_nonmutable{
     entry fun mutable_integer(){
         let mut i: u16 = 0;
 
-        while(i < 1000){
+        while(i < 10000){
             let mut x: u16;
             i = i + 1;
         }
@@ -18,7 +18,7 @@ module move_gas_optimization::mutable_vs_nonmutable{
     entry fun nonmutable_integer(){
         let mut i: u16 = 0;
 
-        while(i < 1000){
+        while(i < 10000){
             let x: u16;
             i = i + 1;
         }
@@ -28,7 +28,7 @@ module move_gas_optimization::mutable_vs_nonmutable{
     entry fun mutable_boolean(){
         let mut i: u16 = 0;
 
-        while(i < 1000){
+        while(i < 10000){
             let mut x: bool = true;
             i = i + 1;
         }
@@ -37,7 +37,7 @@ module move_gas_optimization::mutable_vs_nonmutable{
     /// repeat definitions of nonmutable boolean
     entry fun nonmutable_boolean(){
         let mut i: u16 = 0;
-        while(i < 1000){
+        while(i < 10000){
             let mut x: bool = true;
             i = i + 1;
         }
