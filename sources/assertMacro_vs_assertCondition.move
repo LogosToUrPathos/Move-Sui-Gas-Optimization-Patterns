@@ -12,7 +12,7 @@ module move_gas_optimization::assertMacro_vs_assertCondition{
         let mut i: u16 = 0;
 
         while(i < 1000){
-            assert(x, 0);  // asserting x is true, otherwise abort
+            assert!(x, 0);  // asserting x is true, otherwise abort
             i = i + 1;
         }
     }
