@@ -1,62 +1,26 @@
-module move_gas_optimization::integer_sizes{
-    
-    /// Examining the gas cost differences between integer definitions in sizes ranging from
-    /// u8, u16, u32, u64, u128, u256
-    
-    /// packageID: 
+module move_gas_optimization::direct_vs_alias_addresses{
+
+    /// Examining the difference in costs using direct address references vs
+    /// alias address references
     /// cost: 
-
-    // repeated definition of u8 integer
-    entry fun int_u8(){
+    /// packageID:
+    
+    /// Using a direct reference to the address
+    entry fun directAddress(){
         let mut i: u16 = 0;
-        while(i < 1000){
-            let x: u8;
 
+        while(i < 1000){
+            let x: address = @0x0;
             i = i + 1;
         }
     }
     
-    // repeated definition of u16 integer
-    entry fun int_u16(){
-        let mut i : u16 = 0;
+    /// Using an alias to reference an address
+    entry fun aliasAddress(){
+        let mut i: u16 = 0;
+
         while(i < 1000){
-            let x: u16;
-            i = i + 1;
-        }
-    }
-    
-    // repeated definition of u32 integer
-    entry fun int_u32(){
-        let mut i : u16 = 0;
-        while(i < 1000){
-            let x: u32;
-            i = i + 1;
-        }
-    }
-    
-    // repeated definition of u64 integer
-    entry fun int_u64(){
-        let mut i : u16 = 0;
-        while(i < 1000){
-            let x: u64;
-            i = i + 1;
-        }
-    }
-    
-    // repeated definition of u128 integer
-    entry fun int_u128(){
-        let mut i : u16 = 0;
-        while(i < 1000){
-            let x: u128;
-            i = i + 1;
-        }
-    }
-    
-    // repeated definition of u256 integer
-    entry fun int_u256(){
-        let mut i : u16 = 0;
-        while(i < 1000){
-            let x: u256;
+            let x: address = @move_gas_optimization;
             i = i + 1;
         }
     }
