@@ -1,11 +1,11 @@
 module move_gas_optimization::parallel_vs_struct_array{
-
     
     ///Comparing the gas usage of parallel arrays vs using a single array of struct    
-    
+    /// packageID:
+    /// cost:
 
     /// function creating and filling three parallel arrays with 1000 elements of type u16
-    public fun parallel_array_func(){
+    entry fun parallel_array_func(){
         let mut array1: vector<u16> = vector[];
         let mut array2: vector<u16> = vector[];
         let mut array3: vector<u16> = vector[];
@@ -24,14 +24,14 @@ module move_gas_optimization::parallel_vs_struct_array{
 
     
     /// struct with three fields to compare to three parallel arrays
-    public struct Test_struct{
+    entry struct Test_struct{
         field1: u16,
         field2: u16,
         field3: u16
     }
 
     /// function creating and filling an array of struct with three fields, all fields of type u16
-    public fun struct_array_func(){
+    entry fun struct_array_func(){
         let mut struct_array: vector<Test_struct> = vector[];
         let mut i: u16 = 0;
 
