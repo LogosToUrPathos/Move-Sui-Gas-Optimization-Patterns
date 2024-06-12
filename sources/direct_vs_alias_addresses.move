@@ -1,7 +1,12 @@
 module move_gas_optimization::direct_vs_alias_addresses{
 
+    /// Examining the difference in costs using direct address references vs
+    /// alias address references
+    /// cost: 
+    /// packageID:
     
-    public fun directAddress(){
+    /// Using a direct reference to the address
+    entry fun directAddress(){
         let mut i: u16 = 0;
 
         while(i < 1000){
@@ -10,8 +15,8 @@ module move_gas_optimization::direct_vs_alias_addresses{
         }
     }
     
-    
-    public fun aliasAddress(){
+    /// Using an alias to reference an address
+    entry fun aliasAddress(){
         let mut i: u16 = 0;
 
         while(i < 1000){
