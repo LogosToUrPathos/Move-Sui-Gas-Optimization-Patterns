@@ -12,7 +12,7 @@ module move_gas_optimization::redefined_variables{
         let mut i: u16 = 0;
         let mut x: u16;
 
-        while(i < 1000){
+        while(i < 10000){
             x = i;
             i = i + 1;
         }    
@@ -22,7 +22,7 @@ module move_gas_optimization::redefined_variables{
     entry fun redefined_integer(){
         let mut i: u16 = 0;
         
-        while(i < 1000){
+        while(i < 10000){
             let x: u16 = i;
             i = i + 1;
         }
@@ -33,7 +33,7 @@ module move_gas_optimization::redefined_variables{
         let mut i: u16 = 0;
         let mut x: bool;
         
-        while(i < 1000){
+        while(i < 10000){
             x = true;
             i = i + 1;
         }
@@ -43,7 +43,7 @@ module move_gas_optimization::redefined_variables{
     entry fun redefined_booleans(){
         let mut i: u16 = 0;
 
-        while(i < 1000){
+        while(i < 10000){
             let x: bool = true;
             i = i + 1;
         }
