@@ -1,6 +1,14 @@
 module move_gas_optimization::redefined_variables{
     
-    public fun non_redefined_integer(){
+    /// Comparing gas costs of redefined variables vs variables defined outside a loop
+    /// Variable redefinition and reassignment within a loop vs single definition outside loop
+    /// - and reassignment within loop
+    
+    /// packageID:
+    /// cost: 
+
+    /// examines an integer variable defined outside a loop and reassigned a value within the loop
+    entry fun non_redefined_integer(){
         let mut i: u16 = 0;
         let mut x: u16;
 
@@ -10,7 +18,8 @@ module move_gas_optimization::redefined_variables{
         }    
     }
  
-    public fun redefined_integer(){
+    /// examines an integer variable defined repeatedly within a loop and reassigned within the loop as well
+    entry fun redefined_integer(){
         let mut i: u16 = 0;
         
         while(i < 1000){
@@ -19,7 +28,8 @@ module move_gas_optimization::redefined_variables{
         }
     }
    
-    public fun non_redefined_booleans(){
+    /// examines a character variable defined outside a loop and reassigned a value within the loop
+    entry fun non_redefined_booleans(){
         let mut i: u16 = 0;
         let mut x: bool;
         
@@ -29,7 +39,8 @@ module move_gas_optimization::redefined_variables{
         }
     }
     
-    public fun redefined_booleans(){
+    /// examines a character variable defined repeatedly within a loop and reassigned within the loop as well
+    entry fun redefined_booleans(){
         let mut i: u16 = 0;
 
         while(i < 1000){
