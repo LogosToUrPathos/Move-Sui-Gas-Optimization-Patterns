@@ -12,7 +12,7 @@ module move_gas_optimization::parallel_vs_struct_vectors{
         let mut i: u16 = 0;
 
 
-        while(i < 1000){
+        while(i < 10000){
             vec1.push_back(i);
             vec2.push_back(i);
             vec3.push_back(i);
@@ -35,7 +35,7 @@ module move_gas_optimization::parallel_vs_struct_vectors{
         let mut struct_vector: vector<Test_struct> = vector[];
         let mut i: u16 = 0;
 
-        while (i < 1000){
+        while (i < 10000){
             struct_vector.push_back(Test_struct{
             field1:i,
             field2:i,
