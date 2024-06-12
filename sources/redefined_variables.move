@@ -1,5 +1,5 @@
 module move_gas_optimization::redefined_variables{
-    /*
+    
     public fun non_redefined_integer(){
         let mut i: u16 = 0;
         let mut x: u16;
@@ -9,8 +9,7 @@ module move_gas_optimization::redefined_variables{
             i = i + 1;
         }    
     }
-    */
-    /*
+ 
     public fun redefined_integer(){
         let mut i: u16 = 0;
         
@@ -19,8 +18,7 @@ module move_gas_optimization::redefined_variables{
             i = i + 1;
         }
     }
-    */
-    /*
+   
     public fun non_redefined_booleans(){
         let mut i: u16 = 0;
         let mut x: bool;
@@ -30,7 +28,6 @@ module move_gas_optimization::redefined_variables{
             i = i + 1;
         }
     }
-    */
     
     public fun redefined_booleans(){
         let mut i: u16 = 0;
