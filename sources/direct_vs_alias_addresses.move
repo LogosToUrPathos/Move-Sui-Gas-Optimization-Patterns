@@ -1,6 +1,6 @@
 module move_gas_optimization::direct_vs_alias_addresses{
 
-    /*
+    
     public fun directAddress(){
         let mut i: u16 = 0;
 
@@ -9,7 +9,7 @@ module move_gas_optimization::direct_vs_alias_addresses{
             i = i + 1;
         }
     }
-    */
+    
     
     public fun aliasAddress(){
         let mut i: u16 = 0;
