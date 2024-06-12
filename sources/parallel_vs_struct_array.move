@@ -1,4 +1,4 @@
-module move_gas_optimization::parallel_vs_struct_vector{
+module move_gas_optimization::parallel_vs_struct_vectors{
     
     ///Comparing the gas usage of parallel vectors vs using a single vectors of struct    
     /// packageID:
