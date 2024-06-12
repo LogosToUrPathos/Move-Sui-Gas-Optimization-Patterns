@@ -4,7 +4,7 @@ module move_gas_optimization::parallel_vs_struct_vectors{
     /// packageID:
     /// cost:
 
-    /// function creating and filling three parallel vectors with 1000 elements of type u256
+    /// function creating and filling three parallel vectors with 10000 elements of type u256
     entry fun parallel_vector_func(){
         let mut vec1: vector<u256> = vector[];
         let mut vec2: vector<u256> = vector[];
