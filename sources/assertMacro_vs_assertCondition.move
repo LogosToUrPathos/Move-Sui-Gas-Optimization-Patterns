@@ -1,5 +1,5 @@
 module move_gas_optimization::assertMacro_vs_assertCondition{
-    /*
+    
     /// testing assertion in the form of assert macro
     public fun assertMacro(){
         let x: bool = true;
@@ -10,7 +10,7 @@ module move_gas_optimization::assertMacro_vs_assertCondition{
             i = i + 1;
         }
     }
-    */
+    
     
     /// testing assertion in the form of an 'if' clause rather than assert macro
     public fun assertCondition(){
