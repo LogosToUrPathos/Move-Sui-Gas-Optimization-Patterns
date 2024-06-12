@@ -4,7 +4,7 @@ module move_gas_optimization::parallel_vs_struct_vectors{
     /// packageID:
     /// cost:
 
-    /// function creating and filling three parallel vectors with 1000 elements of type u16
+    /// function creating and filling three parallel vectors with 1000 elements of type u256
     entry fun parallel_vector_func(){
         let mut vec1: vector<u256> = vector[];
         let mut vec2: vector<u256> = vector[];
@@ -30,7 +30,7 @@ module move_gas_optimization::parallel_vs_struct_vectors{
         field3: u256
     }
 
-    /// function creating and filling an vectors of struct with three fields, all fields of type u16
+    /// function creating and filling an vectors of struct with three fields, all fields of type u256
     entry fun struct_vector_func(){
         let mut struct_vector: vector<Test_struct> = vector[];
         let mut i: u16 = 0;
