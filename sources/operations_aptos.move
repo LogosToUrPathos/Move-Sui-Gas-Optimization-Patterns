@@ -46,7 +46,7 @@ module test_deployment::parallel_vs_struct_vector{
         let v: vector<S1> = vector[];
         let i = 0;
 
-        while (i < 100000){
+        while (i < 10000){
             let test_object = S1{f1: 1, f2: 1, f3: 1};
             vector::push_back(&mut v, test_object);
             //v.push_back(test_object);
