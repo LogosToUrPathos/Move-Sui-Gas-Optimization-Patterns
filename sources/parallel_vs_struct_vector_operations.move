@@ -69,14 +69,14 @@ module move_gas_optimization::parallel_vs_struct_vector{
             };
             i = i + 1;
         };
-
+        /*
         // finding result of search
         if(found_index != 0){
             let msg = b"Element found".to_string();
         } else {
             let msg = b"Element not found".to_string();
         };
-
+        */
 
         v.destroy_empty();
     }
@@ -113,13 +113,14 @@ module move_gas_optimization::parallel_vs_struct_vector{
             i = i + 1;
         };
 
+        /*
         // finding result of search
         if(found_index != 0){
             let msg = b"Element found".to_string();
         } else {
             let msg = b"Element not found".to_string();
         };
-
+        */
     }
 
 
