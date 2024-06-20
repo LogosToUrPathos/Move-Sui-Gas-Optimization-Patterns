@@ -254,7 +254,6 @@ module test_deployment::parallel_vs_struct_vector{
             // f1 becomes the product of s1.f2 and s2.f2
             let updated_s1: S1 = S1{f1: s1.f2 * s2.f2, f2: s1.f2, f3: s1.f3};
 
-            s1.f1 = s1.f2 + s2.f2;
             // Re-assigning s1 to become an updated version of itself
             s1 = updated_s1;
 
