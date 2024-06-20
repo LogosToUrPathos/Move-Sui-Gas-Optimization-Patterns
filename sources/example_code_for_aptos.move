@@ -1,4 +1,4 @@
-module move_gas_optimization::integer_sizes{
+module move_gas_optimization::integer_sizes_example{
     
     /// Examining the gas cost differences between integer definitions in sizes ranging from
     /// u8, u16, u32, u64, u128, u256
