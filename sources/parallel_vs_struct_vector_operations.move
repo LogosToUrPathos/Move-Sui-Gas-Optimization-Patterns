@@ -78,7 +78,7 @@ module move_gas_optimization::parallel_vs_struct_vector{
         };
         */
 
-        v.destroy_empty();
+        //v.destroy_empty();
     }
 
 
@@ -152,7 +152,7 @@ module move_gas_optimization::parallel_vs_struct_vector{
             i = i + 1;
         };
 
-        v.destroy_empty();
+        //v.destroy_empty();
     }
 
     public entry fun add_parallel(){
@@ -214,7 +214,7 @@ module move_gas_optimization::parallel_vs_struct_vector{
             i = i + 1;
         };
 
-        v.destroy_empty();
+        //v.destroy_empty();
     }
 
     public entry fun mult_parallel(){
@@ -275,7 +275,7 @@ module move_gas_optimization::parallel_vs_struct_vector{
             i = i + 1;
         };
 
-        v.destroy_empty();
+        //v.destroy_empty();
     }
 
     public entry fun div_parallel(){
@@ -338,7 +338,7 @@ module move_gas_optimization::parallel_vs_struct_vector{
             i = i + 1;
         };
 
-        v.destroy_empty();
+        //v.destroy_empty();
     }
 
     public entry fun sub_parallel(){
