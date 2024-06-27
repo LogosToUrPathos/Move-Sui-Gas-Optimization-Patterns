@@ -1,4 +1,4 @@
-module parallel_vs_struct_vector_object::parallel_vs_struct_object_version{
+module parallel_vs_struct_vector_object::parallel_vs_struct_vectors_object_version{
     
     // struct for vector of struct
     public struct Struct_test has copy, drop, store{
