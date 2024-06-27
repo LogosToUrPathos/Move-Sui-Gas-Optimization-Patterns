@@ -11,7 +11,7 @@ module parallel_vs_struct_vector_object::object_test{
     // object for vector of struct
     public struct Struct_object has key, store{
         id: UID,
-        obj_vec: vector<Struct_test>
+        obj_vec: vector<Struct_test>    // [struct1, struct2, ...] 
 
     }
 
@@ -363,14 +363,53 @@ module parallel_vs_struct_vector_object::object_test{
     // cases:   - update a struct vector
     //          - update a parallel vector
 
+    // updating one field from vector of struct (f1)
+    public entry fun update_struct(object: &mut Struct_object){
+        let mut i = 0;
+        while(i < 1000){
+            // updating index i value to 10
+            let target = vector::borrow_mut(&mut object.obj_vec, i);
+            target.f1 = 10;
+            //*vector::borrow_mut(&mut object.obj_vec.f1, i) = 10;
+            i = i + 1;
+        };
+    }
+
+    // updating one vector from parallel vectors (field vec1)
+    public entry fun update_parallel(object: &mut Parallel_object){
+        let mut i = 0;
+        while(i < 1000){
+            *vector::borrow_mut(&mut object.vec1, i) = 10;
+        };
+    }
+
     //---------------------------------------------------------------------------------------------------------
     // BOOLEAN OPERATION
     // cases:   - true and false on struct vector
     //          - true and false on parallel vector
+    // How are we doing bool? Should I make a new field for bool?
+    // does a conditional statement count as a bool?
+    // ex: (number != 1)  ??
 
+    /*
+    public entry fun true_bool_struct(object: &mut Struct_object){
+        let mut i = 0;
+
+        while(i < 1000){
+            if ()
+        }
+    }
+
+    public entry fun false_bool_struct(object: &mut Struct_object){
+
+    }
+
+    public entry true_bool_parallel(object: &mut Parallel_object){}
+    public entry false_bool_parallel(object: &mut Parallel_object){}
     //comparisons: < > 
     // delete
     // update 
     // boolean
     // 
+    */
 }
