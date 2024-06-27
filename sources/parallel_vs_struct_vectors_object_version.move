@@ -1,4 +1,5 @@
-module parallel_vs_struct_vector_object::parallel_vs_struct_vectors_object_version{
+module parallel_vs_struct_vector_object::object_test{
+    
     
     // struct for vector of struct
     public struct Struct_test has copy, drop, store{
@@ -60,15 +61,18 @@ module parallel_vs_struct_vector_object::parallel_vs_struct_vectors_object_versi
     public entry fun search_parallel(object: &mut Parallel_object){
         let mut i = 0;
         let length = vector::length(&object.vec1);
+        //let length_u256: u256 = convert::to_256(length);
         let element = 1000;
         let mut found_index = 0;
-
+        
         while(i < length){
-            if(vector::borrow(&object.vec1, i) == element){
+            if(vector::borrow(&object.vec1, i) == i as u256){
                 found_index = i;
+                break;
             };
             i = i + 1;
         };
+        
     }
 
     // linear search function using an object containing vector of struct
@@ -81,6 +85,14 @@ module parallel_vs_struct_vector_object::parallel_vs_struct_vectors_object_versi
         while(i < length){
             if(vector::borrow(&object.obj_vec, i).f1 == element){
                 found_index = i;
+            };
+            i = i + 1;
+        };
+
+        while(i < length){
+            if(vector::borrow(&object.obj_vec, i).f1 == i as u256){
+                found_index = i;
+                break;
             };
             i = i + 1;
         };
@@ -122,115 +134,6 @@ module parallel_vs_struct_vector_object::parallel_vs_struct_vectors_object_versi
             i = i + 1;
         };
     }
-    
-    // ===========================================================================================
-    // SUBTRACTION
-
-    public entry fun sub_struct(object1: &mut Struct_object, object2: &mut Struct_object){
-        let mut i = 0;
-        
-        while(i < 1000){
-            //object1.obj_vec.f1[i] = object1.obj_vec.f2[i] + object2.obj_vec.f2[i];
-            // object -> access obj_vec vector of struct -> access field1 vector at index [i];
-            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
-            let target_struct2 = vector::borrow_mut(&mut object2.obj_vec, i);
-
-            target_struct1.f1 = target_struct1.f2 - target_struct2.f2;
-            i = i + 1;
-        };
-    }
-
-    public entry fun sub_struct_singleObj(object1: &mut Struct_object){
-        let mut i = 0;
-        
-        while(i < 1000){
-            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
-            target_struct1.f1 = target_struct1.f2 - 1;
-            i = i + 1;
-        };
-    }
-    
-    public entry fun sub_parallel(object1: &mut Parallel_object, object2: &mut Parallel_object){
-        let mut i = 0;
-
-        while(i < 1000){
-            *vector::borrow_mut(&mut object1.vec1, i) = *vector::borrow(&mut object1.vec2, i) - *vector::borrow(&mut object2.vec2, i);
-            i = i + 1;
-        };
-    }
-
-    // ======================================================================================
-    // MULTIPLICATION
-
-    public entry fun mult_struct(object1: &mut Struct_object, object2: &mut Struct_object){
-        let mut i = 0;
-        
-        while(i < 1000){
-            //object1.obj_vec.f1[i] = object1.obj_vec.f2[i] + object2.obj_vec.f2[i];
-            // object -> access obj_vec vector of struct -> access field1 vector at index [i];
-            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
-            let target_struct2 = vector::borrow_mut(&mut object2.obj_vec, i);
-
-            target_struct1.f1 = target_struct1.f2 * target_struct2.f2;
-            i = i + 1;
-        };
-    }
-
-    public entry fun mult_struct_singleObj(object1: &mut Struct_object){
-        let mut i = 0;
-        
-        while(i < 1000){
-            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
-            target_struct1.f1 = target_struct1.f2 * 1;
-            i = i + 1;
-        };
-    }
-    
-    public entry fun mult_parallel(object1: &mut Parallel_object, object2: &mut Parallel_object){
-        let mut i = 0;
-
-        while(i < 1000){
-            *vector::borrow_mut(&mut object1.vec1, i) = *vector::borrow(&mut object1.vec2, i) * *vector::borrow(&mut object2.vec2, i);
-            i = i + 1;
-        };
-    }
-
-    // ====================================================================================
-    // DIVISION
-
-    public entry fun div_struct(object1: &mut Struct_object, object2: &mut Struct_object){
-        let mut i = 0;
-        
-        while(i < 1000){
-            //object1.obj_vec.f1[i] = object1.obj_vec.f2[i] + object2.obj_vec.f2[i];
-            // object -> access obj_vec vector of struct -> access field1 vector at index [i];
-            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
-            let target_struct2 = vector::borrow_mut(&mut object2.obj_vec, i);
-
-            target_struct1.f1 = target_struct1.f2 / target_struct2.f2;
-            i = i + 1;
-        };
-    }
-
-    public entry fun div_struct_singleObj(object1: &mut Struct_object){
-        let mut i = 0;
-        
-        while(i < 1000){
-            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
-            target_struct1.f1 = target_struct1.f2 / 1;
-            i = i + 1;
-        };
-    }
-    
-    public entry fun div_parallel(object1: &mut Parallel_object, object2: &mut Parallel_object){
-        let mut i = 0;
-
-        while(i < 1000){
-            *vector::borrow_mut(&mut object1.vec1, i) = *vector::borrow(&mut object1.vec2, i) / *vector::borrow(&mut object2.vec2, i);
-            i = i + 1;
-        };
-    }
-
     // ======================================================================================
     // COMPARISON OPERATORS
     // MORE THAN ( < )
@@ -382,34 +285,134 @@ module parallel_vs_struct_vector_object::parallel_vs_struct_vectors_object_versi
             *vector::borrow_mut(&mut object.vec1, i) = 10;
         };
     }
+    
+    // ======================================================================================================
 
-    //---------------------------------------------------------------------------------------------------------
-    // BOOLEAN OPERATION
-    // cases:   - true and false on struct vector
-    //          - true and false on parallel vector
-    // How are we doing bool? Should I make a new field for bool?
-    // does a conditional statement count as a bool?
-    // ex: (number != 1)  ??
+    // cases:   - (==, !=)
+    //          - (>, <, <=, >=)
+    //          - (and, or, xor, left shift, right shift)
+    //          - Read 
 
-    /*
-    public entry fun true_bool_struct(object: &mut Struct_object){
+    // ***********************************
+    //   != test for vector of struct
+    public entry fun doesnt_equal_struct(object: &mut Struct_object){
         let mut i = 0;
 
         while(i < 1000){
-            if ()
+            if(vector::borrow(&object.obj_vec, i).f1 != 1){};
+            i = i + 1;
+        };
+    }
+
+    // != test for parallel vector
+    public entry fun doesnt_equal_parallel(object: &mut Parallel_object){
+        let mut i = 0;
+
+        while(i < 1000){
+            if(vector::borrow(&object.vec1, i) != 1){};
+            i = i + 1;
+        };
+
+    }
+
+    // ***********************************
+    // test for (and) for vector of struct
+
+    // CREATING A BOOL STRUCT TO DO BOOL OPERATIONS SUCH AS: AND, OR, XOR, ...
+    public struct Bool_Struct has copy, drop, store{
+        f1: bool,
+        f2: u256,
+        f3: u256
+    }
+    // BOOL STRUCT CONTAINING VECTOR OF BOOL_STRUCT
+    public struct Bool_Struct_Object has key, store{
+        id: UID,
+        obj_vec: vector<Bool_Struct>
+    }
+
+    // BOOL PARALLEL VECTORS WITHIN AN OBJECT
+    public struct Bool_Parallel_Object has key, store{
+        id: UID,
+        vec1: vector<bool>,
+        vec2: vector<u256>,
+        vec3: vector<u256>
+    }
+    
+    public entry fun create_bool_struct_object(ctx: &mut TxContext){
+        let mut obj_vec_new: vector<Bool_Struct> = vector[];
+        let mut i = 0;
+
+        while(i < 1000){
+            vector::push_back(&mut obj_vec_new, Bool_Struct{f1: true, f2: 2u256, f3: 3u256});
+            i = i + 1;
+        };
+
+        let new_object = Bool_Struct_Object{id: object::new(ctx), obj_vec: obj_vec_new};
+        transfer::transfer(new_object, tx_context::sender(ctx));
+    }
+
+    public entry fun create_bool_parallel_object(ctx: &mut TxContext){
+        let mut vec1_new: vector<bool> = vector[];
+        let mut vec2_new: vector<u256> = vector[];
+        let mut vec3_new: vector<u256> = vector[];
+        let mut i = 0;
+
+        while(i < 1000){
+            vector::push_back(&mut vec1_new, true);
+            vector::push_back(&mut vec2_new, 2);
+            vector::push_back(&mut vec3_new, 3);
+
+            i = i + 1;
+        };
+
+        let new_object = Bool_Parallel_Object{id: object::new(ctx), vec1: vec1_new, vec2: vec2_new, vec3: vec3_new};
+        transfer::transfer(new_object, tx_context::sender(ctx));
+    }
+
+    // TEST FOR 'AND' OPERATION ON STRUCT
+    public entry fun and_struct(object: &mut Bool_Struct_Object){
+        let mut i = 0;
+
+        while(i < 1000){
+            if(vector::borrow(&object.obj_vec, i).f1 && true){};  // f1 is a boolean value
+            i = i + 1;
+        };
+
+    }
+
+    // TEST FOR 'AND' OPERATION ON PARALLEL VECTOR IN OBJECT
+    public entry fun and_parallel(object: &mut Bool_Parallel_Object){
+        let mut i = 0;
+         while(i < 1000){
+            if (*vector::borrow(&object.vec1, i) && true){};  // f1 is a boolean value
+            i = i + 1;
+         };
+    }
+
+    // inspired by Andres's code: https://github.com/Antech15/Move-Sui-Gas-Optimization-Patterns/blob/main/move_gas_optimization/sources/read_and_write.move
+    // test for reading from vector of struct
+    public entry fun read_struct(object: &mut Struct_object){
+        let mut i = 0;
+        let mut temp: u256 = 0;
+
+        while(i < 1000){
+            temp = temp + vector::borrow(&object.obj_vec, i).f1;
+            i = i + 1;
+        };
+    }
+
+    // test for reading from parallel vector
+    public entry fun read_parallel(object: &mut Parallel_object){
+        let mut i = 0;
+        let mut temp: u256 = 0;
+
+        while(i < 1000){
+            temp = temp + *vector::borrow(&object.vec1, i);
+            i = i + 1;
         }
     }
+    
 
-    public entry fun false_bool_struct(object: &mut Struct_object){
 
-    }
 
-    public entry true_bool_parallel(object: &mut Parallel_object){}
-    public entry false_bool_parallel(object: &mut Parallel_object){}
-    //comparisons: < > 
-    // delete
-    // update 
-    // boolean
-    // 
-    */
 }
