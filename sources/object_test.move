@@ -119,6 +119,7 @@ module parallel_vs_struct_vector_object::object_test{
 
         while(i < 1000){
             *vector::borrow_mut(&mut object1.vec1, i) = *vector::borrow(&mut object1.vec2, i) + *vector::borrow(&mut object2.vec2, i);
+            i = i + 1;
         };
     }
     
@@ -154,6 +155,7 @@ module parallel_vs_struct_vector_object::object_test{
 
         while(i < 1000){
             *vector::borrow_mut(&mut object1.vec1, i) = *vector::borrow(&mut object1.vec2, i) - *vector::borrow(&mut object2.vec2, i);
+            i = i + 1;
         };
     }
 
@@ -189,6 +191,7 @@ module parallel_vs_struct_vector_object::object_test{
 
         while(i < 1000){
             *vector::borrow_mut(&mut object1.vec1, i) = *vector::borrow(&mut object1.vec2, i) * *vector::borrow(&mut object2.vec2, i);
+            i = i + 1;
         };
     }
 
@@ -224,6 +227,150 @@ module parallel_vs_struct_vector_object::object_test{
 
         while(i < 1000){
             *vector::borrow_mut(&mut object1.vec1, i) = *vector::borrow(&mut object1.vec2, i) / *vector::borrow(&mut object2.vec2, i);
+            i = i + 1;
         };
     }
+
+    // ======================================================================================
+    // COMPARISON OPERATORS
+    // MORE THAN ( < )
+    public entry fun more_than_struct(object1: &mut Struct_object, object2: &mut Struct_object){
+        let mut i = 0;
+        
+        while(i < 1000){
+            //object1.obj_vec.f1[i] = object1.obj_vec.f2[i] + object2.obj_vec.f2[i];
+            // object -> access obj_vec vector of struct -> access field1 vector at index [i];
+            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
+            let target_struct2 = vector::borrow_mut(&mut object2.obj_vec, i);
+
+            //target_struct1.f1 = target_struct1.f2 / target_struct2.f2;
+            if(target_struct1.f2 > target_struct2.f2){};
+            i = i + 1;
+        };
+
+    }
+
+    public entry fun more_than_struct_singleObj(object1: &mut Struct_object){
+        let mut i = 0;
+        
+        while(i < 1000){
+            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
+            //target_struct1.f1 = target_struct1.f2 / 1;
+            if(target_struct1.f1 > 1)
+            i = i + 1;
+        };
+    }
+    
+    public entry fun more_than_parallel(object1: &mut Parallel_object, object2: &mut Parallel_object){
+        let mut i = 0;
+
+        while(i < 1000){
+            if(*vector::borrow(&mut object1.vec1, i) > *vector::borrow(&mut object1.vec1, i)){};
+            //*vector::borrow_mut(&mut object1.vec1, i) = *vector::borrow(&mut object1.vec2, i) / *vector::borrow(&mut object2.vec2, i);
+            i = i + 1;
+        };
+    }
+
+    // ------- ----- -------- ----- -------- ----- -------- ----- -------- ----- -------- ----- -
+    // LESS THAN OPERATOR
+    public entry fun less_than_struct(object1: &mut Struct_object, object2: &mut Struct_object){
+        let mut i = 0;
+        
+        while(i < 1000){
+            //object1.obj_vec.f1[i] = object1.obj_vec.f2[i] + object2.obj_vec.f2[i];
+            // object -> access obj_vec vector of struct -> access field1 vector at index [i];
+            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
+            let target_struct2 = vector::borrow_mut(&mut object2.obj_vec, i);
+
+            //target_struct1.f1 = target_struct1.f2 / target_struct2.f2;
+            if(target_struct1.f2 < target_struct2.f2){};
+            i = i + 1;
+        };
+    }
+
+    public entry fun less_than_struct_singleObj(object1: &mut Struct_object){
+        let mut i = 0;
+        
+        while(i < 1000){
+            let target_struct1 = vector::borrow_mut(&mut object1.obj_vec, i);
+            //target_struct1.f1 = target_struct1.f2 / 1;
+            if(target_struct1.f1 < 1){};
+            i = i + 1;
+        };
+    }
+    
+    public entry fun less_than_parallel(object1: &mut Parallel_object, object2: &mut Parallel_object){
+        let mut i = 0;
+
+        while(i < 1000){
+            if(*vector::borrow(&mut object1.vec1, i) < *vector::borrow(&mut object1.vec1, i)){};
+            //*vector::borrow_mut(&mut object1.vec1, i) = *vector::borrow(&mut object1.vec2, i) / *vector::borrow(&mut object2.vec2, i);
+            i = i + 1;
+        };
+
+    }
+
+    // ------------------------------------------------------------------------------------------
+    // DELETE OPERATION
+    // How are we deleting? Are we deleting every element in the vector?
+    // cases:   - delete from struct vector
+    //              - pop_back and delete (at given index)
+    //          - delete from parallel vector
+    //              - pop_back and delete (at given index)
+    
+    public entry fun pop_from_struct(object: &mut Struct_object){
+        let mut i = 0;
+        //let length = vector::length(object.obj_vec.f1);
+
+        while(i < 1000){
+            vector::pop_back(&mut object.obj_vec);
+            i = i + 1;
+        };
+    }
+    
+    public entry fun remove_from_struct(object: &mut Struct_object){
+        let mut i = 0;
+
+        while(i < 1000){
+            vector::remove(&mut object.obj_vec, i);
+            i = i + 1;
+        };
+    }
+
+    public entry fun pop_from_parallel(object: &mut Parallel_object){
+        let mut i = 0;
+
+        while(i < 1000){
+            vector::pop_back(&mut object.vec1);
+            vector::pop_back(&mut object.vec2);
+            vector::pop_back(&mut object.vec3);
+        };
+    }
+
+    public entry fun remove_from_parallel(object: &mut Parallel_object){
+        let mut i = 0; 
+        while (i < 1000){
+            vector::remove(&mut object.vec1, i);
+            vector::remove(&mut object.vec2, i);
+            vector::remove(&mut object.vec3, i);
+
+            i = i + 1;
+        };
+    }
+
+    // -------------------------------------------------------------------------------------------
+    // UPDATE OPERATION
+    // cases:   - update a struct vector
+    //          - update a parallel vector
+
+    //---------------------------------------------------------------------------------------------------------
+    // BOOLEAN OPERATION
+    // cases:   - true and false on struct vector
+    //          - true and false on parallel vector
+
+    //comparisons: < > 
+    // delete
+    // update 
+    // boolean
+    // 
 }
